@@ -13,18 +13,17 @@ app.get('/health', (req, res) => {
 });
 
 const startServer = async () => {
-    if (MONGO_URI) {
-        try {
-            await mongoose.connect(MONGO_URI);
-            console.log('MongoDB connected successfully');
-            StorageService.setMongoConnected(true);
-        } catch (error) {
-            console.error('MongoDB connection failed, falling back to file system:', error);
-            StorageService.setMongoConnected(false);
-        }
-    } else {
-        console.log('No MONGO_URI provided, using file system storage');
-        StorageService.setMongoConnected(false);
+    if (!MONGO_URI) {
+        console.error('CRITICAL: MONGO_URI is not provided. Backend require MongoDB to function.');
+        process.exit(1);
+    }
+
+    try {
+        await mongoose.connect(MONGO_URI);
+        console.log('MongoDB connected successfully');
+    } catch (error) {
+        console.error('MongoDB connection failed:', error);
+        process.exit(1);
     }
 
     app.listen(PORT, () => {
