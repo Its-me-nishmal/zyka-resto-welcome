@@ -4,8 +4,12 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import publicRoutes from './routes/publicRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
+import './db.js';
 
 const app = express();
+
+// Trust proxy for rate limiting (Vercel, Render, etc.)
+app.set('trust proxy', 1);
 
 // Middleware
 app.use(helmet());

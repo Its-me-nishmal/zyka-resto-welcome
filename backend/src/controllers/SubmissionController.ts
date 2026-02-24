@@ -1,9 +1,11 @@
 import type { Request, Response } from 'express';
 import { StorageService } from '../services/StorageService.js';
+import mongoose from 'mongoose';
 
 export class SubmissionController {
     static async submit(req: Request, res: Response) {
         try {
+            console.log('Submission attempt. DB State:', mongoose.connection.readyState);
             const { name, mobile, place, favoriteFood, visitTime, companionType, deviceId } = req.body;
 
             if (!name || !mobile || !place) {
