@@ -40,8 +40,17 @@ function App() {
   }, [searchParams, setSource]);
 
   useEffect(() => {
-    // Log visit
-    api.logVisit({ source, deviceId }).catch(console.error);
+    // Log visit ONLY if not on admin route and not already logged this session
+    const isNoTrack = window.location.pathname.startsWith('/admin');
+    const isLogged = sessionStorage.getItem('zyka_visit_logged');
+
+    if (!isNoTrack && !isLogged) {
+      api.logVisit({ source, deviceId })
+        .then(() => {
+          sessionStorage.setItem('zyka_visit_logged', 'true');
+        })
+        .catch(console.error);
+    }
   }, [source, deviceId]);
 
   useEffect(() => {

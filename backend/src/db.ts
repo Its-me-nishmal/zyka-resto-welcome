@@ -17,10 +17,8 @@ const connectDB = async () => {
         console.log('MongoDB connected successfully');
     } catch (error) {
         console.error('MongoDB connection failed:', error);
+        throw error; // Rethrow to let middleware handle it
     }
 };
-
-// Start connection immediately
-connectDB();
 
 export default connectDB;
