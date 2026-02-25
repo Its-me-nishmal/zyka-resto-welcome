@@ -8,7 +8,7 @@ interface SuccessPageProps {
 const SuccessPage: React.FC<SuccessPageProps> = () => {
     const handleShare = () => {
         const text = encodeURIComponent("Hey! I just joined the ZYKA Resto Café Guest List for their Grand Opening! Join the lucky draw and win exciting prizes here: ");
-        const url = encodeURIComponent(window.location.origin);
+        const url = encodeURIComponent(window.location.origin + '?src=whatsapp');
         window.open(`https://wa.me/?text=${text}${url}`, '_blank');
     };
 
