@@ -32,7 +32,7 @@ const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLogin }) => {
     return (
         <div className="flex-1 flex flex-col justify-center max-w-sm mx-auto w-full">
             <div className="text-center mb-8">
-                <div className="bg-orange-100 p-4 rounded-2xl inline-block mb-4">
+                <div className="bg-primary/10 p-4 rounded-2xl inline-block mb-4">
                     <Lock className="w-8 h-8 text-primary" />
                 </div>
                 <h2 className="text-2xl font-bold text-secondary">Admin Login</h2>
@@ -48,7 +48,7 @@ const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLogin }) => {
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            className="w-full pl-12 pr-4 py-3 bg-white border border-orange-100 focus:border-primary rounded-xl outline-none transition-all"
+                            className="w-full pl-12 pr-4 py-3 bg-white border border-primary/10 focus:border-primary rounded-xl outline-none transition-all"
                             placeholder="admin"
                             required
                         />
@@ -63,7 +63,7 @@ const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLogin }) => {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full pl-12 pr-4 py-3 bg-white border border-orange-100 focus:border-primary rounded-xl outline-none transition-all"
+                            className="w-full pl-12 pr-4 py-3 bg-white border border-primary/10 focus:border-primary rounded-xl outline-none transition-all"
                             placeholder="••••••••"
                             required
                         />

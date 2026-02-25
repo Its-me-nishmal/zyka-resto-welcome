@@ -6,7 +6,7 @@ export class SubmissionController {
     static async submit(req: Request, res: Response) {
         try {
             console.log('Submission attempt. DB State:', mongoose.connection.readyState);
-            const { name, mobile, place, favoriteFood, visitTime, companionType, deviceId } = req.body;
+            const { name, mobile, place, favoriteFood, visitTime, companionType, deviceId, source } = req.body;
 
             if (!name || !mobile || !place) {
                 res.status(400).json({ message: 'Name, mobile, and place are required' });
@@ -24,6 +24,7 @@ export class SubmissionController {
                 companionType,
                 reward,
                 deviceId,
+                source: source || 'direct',
                 createdAt: new Date()
             };
 
@@ -35,6 +36,21 @@ export class SubmissionController {
             });
         } catch (error) {
             console.error('Submission error:', error);
+            res.status(500).json({ message: 'Internal server error' });
+        }
+    }
+
+    static async recordVisit(req: Request, res: Response) {
+        try {
+            const { source, deviceId } = req.body;
+            if (!deviceId) {
+                res.status(400).json({ message: 'Device ID is required' });
+                return;
+            }
+            await StorageService.recordVisit({ source: source || 'direct', deviceId });
+            res.status(200).json({ message: 'Visit recorded' });
+        } catch (error) {
+            console.error('Visit record error:', error);
             res.status(500).json({ message: 'Internal server error' });
         }
     }

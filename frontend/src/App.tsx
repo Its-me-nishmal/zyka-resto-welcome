@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import Layout from './components/Layout';
 import LandingPage from './pages/LandingPage';
 import QuestionsPage from './pages/QuestionsPage';
@@ -15,17 +15,34 @@ type Screen = 'landing' | 'game' | 'questions' | 'form' | 'success' | 'limit-rea
 
 function App() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   // Experience Flow State
   const [screen, setScreen] = useState<Screen>('landing');
   const [submits, setSubmits] = useLocalStorage<number>('zyka_submits', 0);
   const [deviceId] = useLocalStorage<string>('zyka_device_id', uuidv4());
+  const [source, setSource] = useLocalStorage<string>('zyka_source', 'direct');
 
   const [answers, setAnswers] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Admin State
   const [adminCreds, setAdminCreds] = useLocalStorage<string>('zyka_admin_token', '');
+
+  useEffect(() => {
+    // Extract source from URL if present
+    const s = searchParams.get('src');
+    if (s && ['qrcode_1', 'qrcode_2', 'qrcode_3', 'qrcode_4', 'whatsapp'].includes(s)) {
+      setSource(s);
+    } else if (s === 'whatsapp') {
+      setSource('whatsapp');
+    }
+  }, [searchParams, setSource]);
+
+  useEffect(() => {
+    // Log visit
+    api.logVisit({ source, deviceId }).catch(console.error);
+  }, [source, deviceId]);
 
   useEffect(() => {
     if (submits >= 3 && screen !== 'success' && screen !== 'limit-reached') {
@@ -47,7 +64,8 @@ function App() {
         ...formData,
         ...answers,
         reward: 'Lucky Draw Entry',
-        deviceId
+        deviceId,
+        source
       };
 
       await api.submitLead(submission);
@@ -78,7 +96,7 @@ function App() {
 
           {screen === 'limit-reached' && (
             <div className="flex-1 flex flex-col items-center justify-center text-center">
-              <div className="bg-red-100 p-8 rounded-full mb-6 text-4xl">🛑</div>
+              <div className="bg-primary/10 p-8 rounded-full mb-6 text-4xl">🛑</div>
               <h2 className="text-2xl font-bold text-secondary mb-2">Limit Reached</h2>
               <p className="text-secondary/60">
                 You have already submitted 3 times from this device. Thank you!

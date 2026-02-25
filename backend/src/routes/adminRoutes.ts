@@ -7,6 +7,7 @@ const router = Router();
 router.use(adminAuth);
 
 router.get('/submissions', AdminController.getSubmissions);
+router.get('/stats', AdminController.getStats);
 router.get('/export/excel', AdminController.exportExcel);
 router.get('/export/pdf', AdminController.exportPDF);
 

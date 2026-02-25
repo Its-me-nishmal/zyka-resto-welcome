@@ -15,7 +15,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                 transition={{ duration: 0.5 }}
                 className="mb-8"
             >
-                <div className="bg-orange-100 p-8 rounded-full mb-6 inline-block">
+                <div className="bg-primary/10 p-8 rounded-full mb-6 inline-block">
                     <Gift className="w-16 h-16 text-primary" />
                 </div>
                 <h2 className="text-3xl font-bold text-secondary mb-2">Claim Your Reward!</h2>
@@ -28,7 +28,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onStart}
-                className="bg-primary text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg shadow-orange-200 flex items-center gap-3 transition-colors hover:bg-orange-600 outline-none"
+                className="bg-primary text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg shadow-primary/20 flex items-center gap-3 transition-colors hover:bg-primary/90 outline-none"
             >
                 Start Experience
                 <ArrowRight className="w-5 h-5" />

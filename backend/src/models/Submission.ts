@@ -9,6 +9,7 @@ export interface ISubmission extends Document {
   companionType: string;
   reward: string;
   deviceId: string;
+  source: string;
   createdAt: Date;
 }
 
@@ -21,6 +22,7 @@ const SubmissionSchema: Schema = new Schema({
   companionType: { type: String, required: true },
   reward: { type: String, required: true },
   deviceId: { type: String, required: true },
+  source: { type: String, default: 'direct' },
   createdAt: { type: Date, default: Date.now },
 });
 

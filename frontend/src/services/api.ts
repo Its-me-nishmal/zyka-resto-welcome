@@ -7,8 +7,19 @@ export const api = {
         const response = await axios.post(`${API_BASE_URL}/submit`, data);
         return response.data;
     },
-    getSubmissions: async (credentials: string) => {
+    logVisit: async (data: { source: string; deviceId: string }) => {
+        const response = await axios.post(`${API_BASE_URL}/visit`, data);
+        return response.data;
+    },
+    getSubmissions: async (credentials: string, params: any = {}) => {
         const response = await axios.get(`${API_BASE_URL}/admin/submissions`, {
+            headers: { Authorization: `Basic ${credentials}` },
+            params
+        });
+        return response.data;
+    },
+    getStats: async (credentials: string) => {
+        const response = await axios.get(`${API_BASE_URL}/admin/stats`, {
             headers: { Authorization: `Basic ${credentials}` }
         });
         return response.data;

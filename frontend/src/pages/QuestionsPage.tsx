@@ -40,7 +40,7 @@ const QuestionsPage: React.FC<QuestionsPageProps> = ({ onComplete }) => {
 
     return (
         <div className="flex-1 flex flex-col pt-8">
-            <div className="mb-8 overflow-hidden bg-orange-100 h-2 rounded-full">
+            <div className="mb-8 overflow-hidden bg-primary/10 h-2 rounded-full">
                 <motion.div
                     className="bg-primary h-full"
                     initial={{ width: 0 }}
@@ -65,10 +65,10 @@ const QuestionsPage: React.FC<QuestionsPageProps> = ({ onComplete }) => {
                             <button
                                 key={option}
                                 onClick={() => handleSelect(option)}
-                                className="w-full py-4 px-6 bg-white border-2 border-orange-100 rounded-2xl text-left font-medium text-secondary hover:border-primary hover:bg-orange-50 transition-all flex justify-between items-center group"
+                                className="w-full py-4 px-6 bg-white border-2 border-primary/10 rounded-2xl text-left font-medium text-secondary hover:border-primary hover:bg-primary/5 transition-all flex justify-between items-center group"
                             >
                                 {option}
-                                <div className="w-6 h-6 rounded-full border-2 border-orange-100 group-hover:border-primary bg-white transition-colors" />
+                                <div className="w-6 h-6 rounded-full border-2 border-primary/10 group-hover:border-primary bg-white transition-colors" />
                             </button>
                         ))}
                     </div>

@@ -40,7 +40,7 @@ const LeadFormPage: React.FC<LeadFormPageProps> = ({ onSubmit, isSubmitting }) =
                             placeholder="John Doe"
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className="w-full pl-12 pr-4 py-4 bg-orange-100/50 border-2 border-transparent focus:border-primary focus:bg-white rounded-2xl outline-none transition-all font-medium"
+                            className="w-full pl-12 pr-4 py-4 bg-primary/5 border-2 border-transparent focus:border-primary focus:bg-white rounded-2xl outline-none transition-all font-medium"
                         />
                     </div>
                 </div>
@@ -55,7 +55,7 @@ const LeadFormPage: React.FC<LeadFormPageProps> = ({ onSubmit, isSubmitting }) =
                             maxLength={10}
                             value={formData.mobile}
                             onChange={(e) => setFormData({ ...formData, mobile: e.target.value.replace(/\D/g, '') })}
-                            className="w-full pl-12 pr-4 py-4 bg-orange-100/50 border-2 border-transparent focus:border-primary focus:bg-white rounded-2xl outline-none transition-all font-medium"
+                            className="w-full pl-12 pr-4 py-4 bg-primary/5 border-2 border-transparent focus:border-primary focus:bg-white rounded-2xl outline-none transition-all font-medium"
                         />
                     </div>
                 </div>
@@ -69,7 +69,7 @@ const LeadFormPage: React.FC<LeadFormPageProps> = ({ onSubmit, isSubmitting }) =
                             placeholder="City, Area"
                             value={formData.place}
                             onChange={(e) => setFormData({ ...formData, place: e.target.value })}
-                            className="w-full pl-12 pr-4 py-4 bg-orange-100/50 border-2 border-transparent focus:border-primary focus:bg-white rounded-2xl outline-none transition-all font-medium"
+                            className="w-full pl-12 pr-4 py-4 bg-primary/5 border-2 border-transparent focus:border-primary focus:bg-white rounded-2xl outline-none transition-all font-medium"
                         />
                     </div>
                 </div>
@@ -82,7 +82,7 @@ const LeadFormPage: React.FC<LeadFormPageProps> = ({ onSubmit, isSubmitting }) =
                         whileTap={{ scale: 0.98 }}
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-primary text-white py-4 rounded-2xl font-bold text-lg shadow-lg shadow-orange-100 flex items-center justify-center gap-2 transition-all hover:bg-orange-600 disabled:opacity-50"
+                        className="w-full bg-primary text-white py-4 rounded-2xl font-bold text-lg shadow-lg shadow-primary/10 flex items-center justify-center gap-2 transition-all hover:bg-primary/90 disabled:opacity-50"
                     >
                         {isSubmitting ? <Loader2 className="w-6 h-6 animate-spin" /> : 'Enter Lucky Draw'}
                     </motion.button>

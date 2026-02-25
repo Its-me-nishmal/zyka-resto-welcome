@@ -34,9 +34,9 @@ const SuccessPage: React.FC<SuccessPageProps> = () => {
                 <div className="absolute top-0 right-0 p-4 opacity-10">
                     <Ticket className="w-24 h-24 rotate-12" />
                 </div>
-                <p className="text-orange-100 text-xs uppercase font-bold tracking-widest mb-1">Entry Confirmed</p>
+                <p className="text-white/70 text-xs uppercase font-bold tracking-widest mb-1">Entry Confirmed</p>
                 <h3 className="text-4xl font-black mb-4 uppercase">Lucky Draw</h3>
-                <div className="bg-orange-600/30 py-2 px-4 rounded-full inline-block text-[10px] font-bold">
+                <div className="bg-white/20 py-2 px-4 rounded-full inline-block text-[10px] font-bold">
                     Join us on Opening Day
                 </div>
             </motion.div>
