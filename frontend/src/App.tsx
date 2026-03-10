@@ -34,7 +34,7 @@ function App() {
     const s = searchParams.get('src');
     if (s && ['qrcode_1', 'qrcode_2', 'qrcode_3', 'qrcode_4', 'whatsapp'].includes(s)) {
       setSource(s);
-    } else if (s === 'whatsapp') {
+    } else if (s === 's' || window.location.pathname === '/s') {
       setSource('whatsapp');
     }
   }, [searchParams, setSource]);
@@ -95,6 +95,9 @@ function App() {
 
   return (
     <Routes>
+      {/* Short link redirect */}
+      <Route path="/s" element={<Navigate to="/?src=whatsapp" replace />} />
+
       {/* Customer Experience Flow */}
       <Route path="/" element={
         <Layout>
