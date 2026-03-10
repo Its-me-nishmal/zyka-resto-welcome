@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { User, Phone, MapPin, Loader2, Instagram, Check } from 'lucide-react';
 
@@ -11,6 +11,18 @@ const LeadFormPage: React.FC<LeadFormPageProps> = ({ onSubmit, isSubmitting }) =
     const [formData, setFormData] = useState({ name: '', mobile: '', place: '' });
     const [isFollowing, setIsFollowing] = useState(false);
     const [error, setError] = useState('');
+
+    useEffect(() => {
+        if (localStorage.getItem('hasFollowedInsta') === 'true') {
+            setIsFollowing(true);
+        }
+    }, []);
+
+    const handleInstaClick = () => {
+        window.open('https://instagram.com/zykarestocafe', '_blank', 'noopener,noreferrer');
+        setIsFollowing(true);
+        localStorage.setItem('hasFollowedInsta', 'true');
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -79,18 +91,22 @@ const LeadFormPage: React.FC<LeadFormPageProps> = ({ onSubmit, isSubmitting }) =
                     </div>
                 </div>
 
-                <div className="flex items-start gap-4 p-4 bg-primary/5 rounded-2xl border-2 border-transparent transition-all">
+                <div className="flex flex-col gap-3 p-4 bg-primary/5 rounded-2xl border-2 border-transparent">
+                    <p className="text-sm text-secondary/80 font-medium text-center">
+                        Follow our Instagram to participate in the lucky draw!
+                    </p>
                     <button
                         type="button"
-                        onClick={() => setIsFollowing(!isFollowing)}
-                        className={`w-6 h-6 mt-0.5 rounded-md flex items-center justify-center border-2 transition-all shrink-0 ${isFollowing ? 'bg-primary border-primary text-white' : 'bg-white border-primary/20'
+                        onClick={handleInstaClick}
+                        className={`w-full py-3 px-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all ${isFollowing
+                                ? 'bg-green-500/10 text-green-600 border-2 border-green-500/20 hover:bg-green-500/20'
+                                : 'bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white shadow-lg shadow-[#fd1d1d]/20 hover:opacity-90'
                             }`}
                     >
-                        {isFollowing && <Check className="w-4 h-4" />}
+                        <Instagram className="w-5 h-5" />
+                        {isFollowing ? 'Followed @zykarestocafe' : 'Follow @zykarestocafe'}
+                        {isFollowing && <Check className="w-5 h-5 ml-1" />}
                     </button>
-                    <div className="text-sm text-secondary/80 font-medium">
-                        I confirm that I follow <a href="https://instagram.com/zykarestocafe" target="_blank" rel="noopener noreferrer" className="text-primary font-bold hover:underline inline-flex items-center gap-1">@zykarestocafe <Instagram className="w-4 h-4" /></a> on Instagram.
-                    </div>
                 </div>
 
                 {error && <p className="text-red-500 text-xs font-bold ml-1">{error}</p>}
