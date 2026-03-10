@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Phone, MapPin, Loader2 } from 'lucide-react';
+import { User, Phone, MapPin, Loader2, Instagram, Check } from 'lucide-react';
 
 interface LeadFormPageProps {
     onSubmit: (data: { name: string; mobile: string; place: string }) => void;
@@ -9,6 +9,7 @@ interface LeadFormPageProps {
 
 const LeadFormPage: React.FC<LeadFormPageProps> = ({ onSubmit, isSubmitting }) => {
     const [formData, setFormData] = useState({ name: '', mobile: '', place: '' });
+    const [isFollowing, setIsFollowing] = useState(false);
     const [error, setError] = useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -19,6 +20,10 @@ const LeadFormPage: React.FC<LeadFormPageProps> = ({ onSubmit, isSubmitting }) =
         }
         if (formData.mobile.length !== 10) {
             setError('Mobile number must be 10 digits');
+            return;
+        }
+        if (!isFollowing) {
+            setError('Please follow our Instagram account to participate');
             return;
         }
         setError('');
@@ -71,6 +76,20 @@ const LeadFormPage: React.FC<LeadFormPageProps> = ({ onSubmit, isSubmitting }) =
                             onChange={(e) => setFormData({ ...formData, place: e.target.value })}
                             className="w-full pl-12 pr-4 py-4 bg-primary/5 border-2 border-transparent focus:border-primary focus:bg-white rounded-2xl outline-none transition-all font-medium"
                         />
+                    </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 bg-primary/5 rounded-2xl border-2 border-transparent transition-all">
+                    <button
+                        type="button"
+                        onClick={() => setIsFollowing(!isFollowing)}
+                        className={`w-6 h-6 mt-0.5 rounded-md flex items-center justify-center border-2 transition-all shrink-0 ${isFollowing ? 'bg-primary border-primary text-white' : 'bg-white border-primary/20'
+                            }`}
+                    >
+                        {isFollowing && <Check className="w-4 h-4" />}
+                    </button>
+                    <div className="text-sm text-secondary/80 font-medium">
+                        I confirm that I follow <a href="https://instagram.com/zykarestocafe" target="_blank" rel="noopener noreferrer" className="text-primary font-bold hover:underline inline-flex items-center gap-1">@zykarestocafe <Instagram className="w-4 h-4" /></a> on Instagram.
                     </div>
                 </div>
 
