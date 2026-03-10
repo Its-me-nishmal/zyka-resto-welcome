@@ -54,7 +54,7 @@ const LeadFormPage: React.FC<LeadFormPageProps> = ({ onSubmit, isSubmitting }) =
                         <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary" />
                         <input
                             type="text"
-                            placeholder="John Doe"
+                            placeholder=""
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             className="w-full pl-12 pr-4 py-4 bg-primary/5 border-2 border-transparent focus:border-primary focus:bg-white rounded-2xl outline-none transition-all font-medium"
@@ -68,7 +68,7 @@ const LeadFormPage: React.FC<LeadFormPageProps> = ({ onSubmit, isSubmitting }) =
                         <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary" />
                         <input
                             type="tel"
-                            placeholder="9876543210"
+                            placeholder=""
                             maxLength={10}
                             value={formData.mobile}
                             onChange={(e) => setFormData({ ...formData, mobile: e.target.value.replace(/\D/g, '') })}
@@ -83,7 +83,7 @@ const LeadFormPage: React.FC<LeadFormPageProps> = ({ onSubmit, isSubmitting }) =
                         <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary" />
                         <input
                             type="text"
-                            placeholder="City, Area"
+                            placeholder=""
                             value={formData.place}
                             onChange={(e) => setFormData({ ...formData, place: e.target.value })}
                             className="w-full pl-12 pr-4 py-4 bg-primary/5 border-2 border-transparent focus:border-primary focus:bg-white rounded-2xl outline-none transition-all font-medium"
@@ -99,8 +99,8 @@ const LeadFormPage: React.FC<LeadFormPageProps> = ({ onSubmit, isSubmitting }) =
                         type="button"
                         onClick={handleInstaClick}
                         className={`w-full py-3 px-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all ${isFollowing
-                                ? 'bg-green-500/10 text-green-600 border-2 border-green-500/20 hover:bg-green-500/20'
-                                : 'bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white shadow-lg shadow-[#fd1d1d]/20 hover:opacity-90'
+                            ? 'bg-green-500/10 text-green-600 border-2 border-green-500/20 hover:bg-green-500/20'
+                            : 'bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white shadow-lg shadow-[#fd1d1d]/20 hover:opacity-90'
                             }`}
                     >
                         <Instagram className="w-5 h-5" />
