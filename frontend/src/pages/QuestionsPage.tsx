@@ -8,17 +8,17 @@ interface QuestionsPageProps {
 const questions = [
     {
         key: 'favoriteFood',
-        question: 'What is your favorite type of food?',
-        options: ['Arabic', 'Burgers', 'Chinese', 'Desserts']
+        question: 'What is your favorite dish?',
+        options: ['Arabic', 'Continental', 'Chinese', 'Desserts']
     },
     {
         key: 'visitTime',
-        question: 'When do you usually visit cafés?',
+        question: 'When do you prefer to visit cafés?',
         options: ['Morning', 'Lunch', 'Evening', 'Late Night']
     },
     {
         key: 'companionType',
-        question: 'Who do you usually visit with?',
+        question: 'Who do you prefer to visit with?',
         options: ['Friends', 'Family', 'Partner', 'Solo']
     }
 ];

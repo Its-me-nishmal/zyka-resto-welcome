@@ -18,9 +18,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                 <div className="bg-primary/10 p-8 rounded-full mb-6 inline-block">
                     <Gift className="w-16 h-16 text-primary" />
                 </div>
-                <h2 className="text-3xl font-bold text-secondary mb-2">Claim Your Reward!</h2>
+                <h2 className="text-3xl font-bold text-secondary mb-2">Let's participate</h2>
                 <p className="text-secondary/60 max-w-xs mx-auto">
-                    Scan, Play, and Win exciting prizes before our grand opening.
+                    Scan, Play, and Win exciting prizes
                 </p>
             </motion.div>
 
