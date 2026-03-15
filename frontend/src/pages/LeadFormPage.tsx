@@ -19,9 +19,22 @@ const LeadFormPage: React.FC<LeadFormPageProps> = ({ onSubmit, isSubmitting }) =
     }, []);
 
     const handleInstaClick = () => {
-        window.open('https://instagram.com/zykarestocafe', '_blank', 'noopener,noreferrer');
+        // Validate form first before opening Instagram
+        if (!formData.name || !formData.mobile || !formData.place) {
+            setError('Please fill in all fields before following');
+            return;
+        }
+        if (formData.mobile.length !== 10) {
+            setError('Mobile number must be 10 digits');
+            return;
+        }
+
+        // All valid — clear error, mark as following, open Instagram, and auto-submit
+        setError('');
         setIsFollowing(true);
         localStorage.setItem('hasFollowedInsta', 'true');
+        window.open('https://instagram.com/zykarestocafe', '_blank', 'noopener,noreferrer');
+        onSubmit(formData);
     };
 
     const handleSubmit = (e: React.FormEvent) => {
